@@ -38,22 +38,42 @@ class BatchHandler(object):
         resp.content_type = 'application/json'
         resp.body = response_body
 
-def get_application():
-    api = falcon.API()
-    api.auto_parse_form_urlencoded = True
-    api.add_route('/v1/batch', BatchHandler(rpc_handler))
-    return api
 
-def make_server(host, port, app):
-    wsgi_server = make_server(host=host, port=port, app=app)
-    try:
-        wsgi_server.serve_forever()
-    finally:
-        wsgi_server.server_close()
+class Server(object):
+    def __init__(self):
+        self._wsgi_app = falcon.API()
+        self.method_map = RpcMethodMap()
+        self.rpc_handler = RpcHandler(self.method_map)
+        self._wsgi_set_up()
 
+    def _wsgi_set_up(self):
+        self._wsgi_app.req_options.auto_parse_form_urlencoded = True
+        self._wsgi_app.add_route('/v1/batch', BatchHandler(self.rpc_handler))
 
+    def __call__(self, env, start_response):
+        return self._wsgi_app(env, start_response)
 
+    def run(self, host, port):
+        """Create a new  server listening on `host` and `port` for `app`"""
 
+        wsgi_server = make_server(host=host, port=port, app=self._wsgi_app)
+        try:
+            wsgi_server.serve_forever()
+        finally:
+            wsgi_server.server_close()
 
+    def registe(self, endpoint, **options):
+        """
+        Register a function to response to RPC requests.
 
+        """
 
+        def decorator(fn):
+            method = RpcMethod(fn, endpoint, options)
+            self.method_map.add(method=method)
+            return fn
+
+        return decorator
+
+    def server_list_method(self):
+        pass

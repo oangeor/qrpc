@@ -2,6 +2,11 @@
 
 import six
 
+
+# class RPCException(Exception):
+#     pass
+
+
 class RPCFaultException(Exception):
     def __init__(self, code, message):
         assert isinstance(code, six.integer_types)
@@ -28,4 +33,7 @@ class RPCSystemException(Exception):
 
 
 class RPCCommunicationException(RPCSystemException):
+    """
+    Could not connect to server or invalid http status_code
+    """
     pass
