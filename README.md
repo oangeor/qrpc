@@ -13,7 +13,7 @@ pip install qrpc
 ## A Simple Example
 This is a realy simple example of how to create your own API using QRpc
 
-###Server
+### Server
 
 ```python
 from qrpc.server import Server
@@ -37,7 +37,7 @@ server.run('127.0.0.1', 8080)
 ```
 
 
-###Client
+### Client
 
 ```python
 from qrpc.client import RpcClient
