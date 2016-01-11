@@ -13,7 +13,8 @@ class CommonMiddleware(object):
     "Common" middleware for taking care of some basic operations:
     """
 
-    def process_request(self, rpc_method):
+    @staticmethod
+    def process_request(rpc_method):
         if not rpc_method:
             return RpcResponseMethodNotFound(rpc_method.endpoint)
 
@@ -35,7 +36,8 @@ class CommonMiddleware(object):
             )
         return response
 
-    def process_response(self, response):
+    @staticmethod
+    def process_response(response):
         """
         Do nothing for now.
         """

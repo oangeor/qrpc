@@ -3,5 +3,5 @@
 from .deprecated import DeprecatedMiddleware
 
 OPTIONS_MIDDLEWARE = {
-    DeprecatedMiddleware.option_name: DeprecatedMiddleware()
+    DeprecatedMiddleware.option_name: DeprecatedMiddleware
 }
