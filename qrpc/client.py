@@ -1,5 +1,6 @@
 # coding=utf-8
 import functools
+import json
 import traceback
 
 import requests
@@ -11,8 +12,6 @@ from qrpc.result import RpcResult
 from qrpc.scheduler import SchedulerBatch
 
 HTTP_SUCCESS = 200
-
-import json
 
 
 class ServerProxy(object):

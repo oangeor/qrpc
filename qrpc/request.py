@@ -1,5 +1,6 @@
 # coding=utf-8
 
+
 class RpcRequest(object):
     def __init__(self, method, params):
         self._method = method

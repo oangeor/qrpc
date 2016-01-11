@@ -33,6 +33,9 @@ class RpcMethodMap(object):
         self.__method_map = {}
 
     def add(self, method):
+        """
+        Add the registed rpc function.
+        """
         assert isinstance(method, RpcMethod)
         if method.endpoint in self.__method_map:
             raise MethodBindError(

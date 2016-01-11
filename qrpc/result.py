@@ -19,7 +19,6 @@ class Lazy(object):
         return self._result_cache[name]
 
 
-
 class RpcResult(object):
     def __init__(self, rpc_code, data, message):
         self._data = data

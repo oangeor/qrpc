@@ -11,7 +11,8 @@ from qrpc.request import RpcRequest
 
 class RpcHandler(object):
     """
-    Handle the rpc request
+    Handle the rpc request.
+    It takes the rpc request data, dispatches the method, and send it back to client.
     """
 
     def __init__(self, method_map):
