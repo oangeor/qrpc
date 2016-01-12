@@ -6,7 +6,7 @@
 # Installation
 On most systems, its a matter of
 ```bash
-pip setup.py install
+python setup.py install
 ```
 
 # Quickstart
