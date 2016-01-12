@@ -6,7 +6,7 @@
 # Installation
 On most systems, its a matter of
 ```bash
-pip install qrpc
+pip setup.py install
 ```
 
 # Quickstart
@@ -87,7 +87,7 @@ The QRpc will catch the exception and wrap it in reponse.
 
 
 
-#Lazy Call and Evaluation
+# Lazy Call and Evaluation
 
 RPC call are lazy--the act of creating an rpc call doesn't send the network request to server. You can stack call together all day long, and the framework won't actually send the network request until one of the calls is evaluated. You can get detail from the following example:
 
