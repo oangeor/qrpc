@@ -51,3 +51,4 @@ class SchedulerBatch(SchedulerBase):
 
         for job, result in zip(self._job_list, result_list):
             job.result = result
+        self.evaluated = True
